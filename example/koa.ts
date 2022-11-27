@@ -24,6 +24,7 @@ function start() {
   app.use(
     PrometheusMiddleware({
       customLabels: ["app"],
+      defaultMetricsCollectorConfiguration: { labels: { app: "myApp" } },
       ignorePaths: ["/metrics"],
       transformLabels: (labels) => {
         labels["app"] = "myApp";

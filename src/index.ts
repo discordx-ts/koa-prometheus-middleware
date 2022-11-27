@@ -16,6 +16,8 @@ const PrometheusMiddleware = (options?: Options): Middleware => {
     customLabels: options?.customLabels
       ? ["method", "route", "status", ...options.customLabels]
       : ["method", "route", "status"],
+    defaultMetricsCollectorConfiguration:
+      options?.defaultMetricsCollectorConfiguration,
     extraMasks: options?.extraMasks ?? [],
     ignorePaths: options?.ignorePaths ?? ["/metrics"],
     normalizeStatus: options?.normalizeStatus ?? true,
@@ -34,7 +36,10 @@ const PrometheusMiddleware = (options?: Options): Middleware => {
 
   // collect default metrics
   if (opts.collectDefaultMetrics) {
-    Prometheus.collectDefaultMetrics({ prefix: opts.prefix });
+    Prometheus.collectDefaultMetrics({
+      prefix: opts.prefix,
+      ...opts.defaultMetricsCollectorConfiguration,
+    });
   }
 
   const requestCount = requestCountGenerator(opts.customLabels, opts.prefix);

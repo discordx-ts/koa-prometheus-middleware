@@ -1,4 +1,5 @@
 import type { Context } from "koa";
+import type Prometheus from "prom-client";
 
 export type Options = {
   /*
@@ -11,6 +12,14 @@ export type Options = {
    * Optional Array containing extra labels, used together with transformLabels
    */
   customLabels?: string[];
+
+  /*
+   * Default Metrics Collector Configuration
+   */
+  defaultMetricsCollectorConfiguration?: Omit<
+    Prometheus.DefaultMetricsCollectorConfiguration,
+    "prefix"
+  >;
 
   /*
    * Optional, list of regex to be used as argument to url-value-parser, this will
