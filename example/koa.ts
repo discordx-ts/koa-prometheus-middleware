@@ -23,7 +23,11 @@ router.get("/metrics", async (ctx) => {
 function start() {
   app.use(
     PrometheusMiddleware({
+      customLabels: ["app"],
       ignorePaths: ["/metrics"],
+      transformLabels: (labels) => {
+        labels["app"] = "myApp";
+      },
     })
   );
 

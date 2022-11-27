@@ -5,6 +5,7 @@
     "rootDir": "src",
     "outDir": "build/esm",
     "moduleResolution": "Node",
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "esModuleInterop": true,
@@ -14,5 +15,5 @@
     "noUncheckedIndexedAccess": true,
     "skipLibCheck": true
   },
-  "exclude": ["example", "node_modules"]
+  "exclude": ["build", "example", "node_modules"]
 }

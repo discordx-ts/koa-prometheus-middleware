@@ -1,3 +1,5 @@
+import type { Context } from "koa";
+
 export type Options = {
   /*
    * Whether or not to collect prom-client default metrics. These metrics are useful for
@@ -46,4 +48,9 @@ export type Options = {
    * Buckets for the response length metrics (in bytes) histogram
    */
   responseLengthBuckets?: number[];
+
+  /*
+   * Optional function(labels, ctx) adds to the labels object dynamic values for each label in customLabels
+   */
+  transformLabels?: (labels: Record<string, string>, ctx: Context) => void;
 };

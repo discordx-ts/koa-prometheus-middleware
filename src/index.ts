@@ -13,7 +13,9 @@ import type { Options } from "./types.js";
 const PrometheusMiddleware = (options?: Options): Middleware => {
   const opts = {
     collectDefaultMetrics: options?.collectDefaultMetrics ?? true,
-    customLabels: options?.customLabels ?? ["method", "route", "status"],
+    customLabels: options?.customLabels
+      ? ["method", "route", "status", ...options.customLabels]
+      : ["method", "route", "status"],
     extraMasks: options?.extraMasks ?? [],
     ignorePaths: options?.ignorePaths ?? ["/metrics"],
     normalizeStatus: options?.normalizeStatus ?? true,
@@ -27,6 +29,7 @@ const PrometheusMiddleware = (options?: Options): Middleware => {
     responseLengthBuckets: options?.responseLengthBuckets ?? [
       512, 1024, 5120, 10240, 51200, 102400,
     ],
+    transformLabels: options?.transformLabels,
   };
 
   // collect default metrics
@@ -75,6 +78,9 @@ const PrometheusMiddleware = (options?: Options): Middleware => {
         : ctx.res.statusCode.toString();
 
       const labels = { method, route, status };
+      if (typeof opts.transformLabels === "function") {
+        opts.transformLabels(labels, ctx);
+      }
 
       // request count
       requestCount.inc(labels);
