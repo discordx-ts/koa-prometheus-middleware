@@ -29,7 +29,7 @@ function start() {
       transformLabels: (labels) => {
         labels["app"] = "myApp";
       },
-    })
+    }),
   );
 
   app.use(router.routes());

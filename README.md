@@ -19,7 +19,7 @@ yarn add koa-prometheus-middleware
 app.use(
   PrometheusMiddleware({
     ignorePaths: ["/metrics"],
-  })
+  }),
 );
 
 // add router

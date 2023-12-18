@@ -6,7 +6,7 @@ import Prometheus from "prom-client";
  */
 function requestCountGenerator(
   labelNames: string[],
-  prefix = ""
+  prefix = "",
 ): Prometheus.Counter {
   return new Prometheus.Counter({
     help: "Counter for total requests received",
@@ -23,7 +23,7 @@ function requestCountGenerator(
 function requestDurationGenerator(
   labelNames: string[],
   buckets: number[],
-  prefix = ""
+  prefix = "",
 ): Prometheus.Histogram {
   return new Prometheus.Histogram({
     buckets,
@@ -41,7 +41,7 @@ function requestDurationGenerator(
 function requestLengthGenerator(
   labelNames: string[],
   buckets: number[],
-  prefix = ""
+  prefix = "",
 ): Prometheus.Histogram {
   return new Prometheus.Histogram({
     buckets,
@@ -59,7 +59,7 @@ function requestLengthGenerator(
 function responseLengthGenerator(
   labelNames: string[],
   buckets: number[],
-  prefix = ""
+  prefix = "",
 ): Prometheus.Histogram {
   return new Prometheus.Histogram({
     buckets,

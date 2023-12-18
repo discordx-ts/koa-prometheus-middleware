@@ -1,5 +1,6 @@
 import type { Context } from "koa";
 import type Prometheus from "prom-client";
+import type { PrometheusContentType } from "prom-client";
 
 export type Options = {
   /*
@@ -17,7 +18,7 @@ export type Options = {
    * Default Metrics Collector Configuration
    */
   defaultMetricsCollectorConfiguration?: Omit<
-    Prometheus.DefaultMetricsCollectorConfiguration,
+    Prometheus.DefaultMetricsCollectorConfiguration<PrometheusContentType>,
     "prefix"
   >;
 

@@ -47,19 +47,19 @@ const PrometheusMiddleware = (options?: Options): Middleware => {
   const requestDuration = requestDurationGenerator(
     opts.customLabels,
     opts.requestDurationBuckets,
-    opts.prefix
+    opts.prefix,
   );
 
   const requestLength = requestLengthGenerator(
     opts.customLabels,
     opts.requestLengthBuckets,
-    opts.prefix
+    opts.prefix,
   );
 
   const responseLength = responseLengthGenerator(
     opts.customLabels,
     opts.responseLengthBuckets,
-    opts.prefix
+    opts.prefix,
   );
 
   /**
